@@ -1,39 +1,38 @@
-<!-- templates/signup.html -->
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Whiteboard Signin">
 
-{% extends "base.html" %}
+	<title>Signin Template for Bootstrap</title>
 
-{% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Sign Up</h3>
-    <div class="box">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="notification is-danger">
-                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
-            </div>
-        {% endif %}
-        {% endwith %}
-        <form method="POST" action="/signup">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
-                </div>
-            </div>
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap.min.css') }}" >
 
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
-                </div>
-            </div>
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/login.css') }}">
+</head>
 
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Password">
-                </div>
-            </div>
-
-            <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
-        </form>
-    </div>
-</div>
-{% endblock %}
+<body class="text-center">
+	
+	<form class="form-signin" method="POST" action="/signup">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div class="alert alert-danger">
+					{{ messages[0] }}
+				</div>
+			{% endif %}
+    	{% endwith %}
+		<img class="mb-4" src="{{ url_for('static', filename='images/w.svg') }}" alt="" width="200" height="200">
+		<h1 class="h3 mb-3 font-weight-normal">Signup</h1>
+		<label for="inputEmail" class="sr-only">Email address</label>
+		<input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+        <label for="inputName" class="sr-only">Name</label>
+		<input type="text" id="inputName" class="form-control" placeholder="Name" name="name" required>
+        <label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+	</form>
+</body>
+</html>

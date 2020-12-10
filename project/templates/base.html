@@ -1,58 +1,79 @@
-<!-- templates/base.html -->
-
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flask Auth Example</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
-</head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Homework Assignment Grading System">
+    
+	<title>Whiteboard</title>
 
-<body>
-    <section class="hero is-primary is-fullheight">
+	<!-- Bootstrap core CSS -->
+	<link href="{{ url_for('static', filename='stylesheets/bootstrap.min.css') }}" rel="stylesheet">
 
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                        <div class="navbar-end">
-                            <a href="{{ url_for('main.index') }}" class="navbar-item">
-                                Home
-                            </a>
-                            {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('main.profile') }}" class="navbar-item">
-                                Profile
-                            </a>
-                            {% endif %}
-                            {% if not current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.login') }}" class="navbar-item">
-                                Login
-                            </a>
-                            <a href="{{ url_for('auth.signup') }}" class="navbar-item">
-                                Sign Up
-                            </a>
-                            {% endif %}
-                            {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
-                                Logout
-                            </a>
-                            {% endif %}
-                        </div>
-                    </div>
+	<!-- fontawesome -->
+	<script src="https://kit.fontawesome.com/4dc0d17132.js" crossorigin="anonymous"></script>
+
+	<!-- Custom styles for this template -->
+	<link href="{{ url_for('static', filename='stylesheets/dashboard.css') }}" rel="stylesheet">
+	
+  <body>
+	<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+	  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Whiteboard</a>
+	  
+	  <ul class="navbar-nav px-3">
+		<li class="nav-item text-nowrap">
+		  <a class="nav-link" href="#">Sign out</a>
+		</li>
+	  </ul>
+	</nav>
+
+	<div class="container-fluid content">
+	  <div class="row">
+		<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+		  <div class="sidebar-sticky">
+			<ul class="nav flex-column">
+			  <li class="nav-item">
+				<a class="nav-link" href="#">
+					<i class="fas fa-home"></i>
+					Dashboard 
+				</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link active" href="#">
+					<i class="far fa-folder"></i>
+					Assignments
+				</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="{{url_for('main.gradebook')}}">
+					<i class="far fa-clipboard"></i>
+					Grades
+				</a>
+			  </li>
+			</ul>
+		  </div>
+		</nav>
+
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+			<div class="jumbotron row">
+                <!-- Assignment Descriptions Section-->
+				<div class="col-md" id="description">
+                    {% block description %}
+                    {% endblock %}
                 </div>
-            </nav>
-        </div>
+                <!-- Assignment Submission Section -->
+				<div class="col-md" id="submission">
+					{% block submission %}
+                    {% endblock %}
+				</div>
+			</div>
+		</main>
+	  </div>
+	</div>
 
-        <div class="hero-body">
-            <div class="container has-text-centered">
-               {% block content %}
-               {% endblock %}
-            </div>
-        </div>
-    </section>
+	<script src="./resource/jquery-3.3.1.slim.min.js.download"></script>
+	<script src="./resource/popper.min.js.download"></script>
+	<script src="./resource/bootstrap.min.js.download"></script>
 </body>
-
 </html>

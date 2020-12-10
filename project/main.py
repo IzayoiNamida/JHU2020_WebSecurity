@@ -6,10 +6,11 @@ from flask_login import login_required, current_user
 main = Blueprint('main', __name__)
 
 @main.route('/')
+@login_required
 def index():
     return render_template('index.html')
 
-@main.route('/profile')
+@main.route('/gradebook')
 @login_required
-def profile():
-    return render_template('profile.html', name=current_user.name)
+def gradebook():
+    return render_template('gradebook.html', name=current_user.name)
