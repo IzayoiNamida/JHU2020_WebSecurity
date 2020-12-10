@@ -3,5 +3,7 @@ Final project of JHU 2020 Web Srcurity: Automated, web-based, secure homework gr
 
 # To run the local server
 source auth/bin/activate
+
 export FLASK_APP=project
+
 flask run
