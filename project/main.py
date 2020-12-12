@@ -7,8 +7,18 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 @login_required
-def index():
-    return render_template('index.html')
+def dashboard():
+    return render_template('dashboard.html')
+
+@main.route('/assignments')
+@login_required
+def assignments():
+    return render_template('assignments.html')
+
+@main.route('/assignment/1')
+@login_required
+def assignment_1():
+    return render_template('assignment1.html')
 
 @main.route('/gradebook')
 @login_required

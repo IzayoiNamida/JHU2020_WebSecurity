@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Homework Assignment Grading System">
-    
+	
 	<title>Whiteboard</title>
 
 	<!-- Bootstrap core CSS -->
@@ -19,11 +19,11 @@
 	
   <body>
 	<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-	  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Whiteboard</a>
+	  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="url_for{'main.dashboard'}">Whiteboard</a>
 	  
 	  <ul class="navbar-nav px-3">
 		<li class="nav-item text-nowrap">
-		  <a class="nav-link" href="#">Sign out</a>
+		  <a class="nav-link" href="{{url_for('auth.logout')}}">Sign out</a>
 		</li>
 	  </ul>
 	</nav>
@@ -34,19 +34,19 @@
 		  <div class="sidebar-sticky">
 			<ul class="nav flex-column">
 			  <li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link {{'active' if active_page == 'dashboard' else ''}}" href="{{url_for('main.dashboard')}}">
 					<i class="fas fa-home"></i>
 					Dashboard 
 				</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link active" href="#">
+				<a class="nav-link {{'active' if active_page == 'assignments' else ''}}" href="{{url_for('main.assignments')}}">
 					<i class="far fa-folder"></i>
 					Assignments
 				</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" href="{{url_for('main.gradebook')}}">
+				<a class="nav-link {{'active' if active_page == 'gradebook' else ''}}" href="{{url_for('main.gradebook')}}">
 					<i class="far fa-clipboard"></i>
 					Grades
 				</a>
@@ -56,24 +56,13 @@
 		</nav>
 
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-			<div class="jumbotron row">
-                <!-- Assignment Descriptions Section-->
-				<div class="col-md" id="description">
-                    {% block description %}
-                    {% endblock %}
-                </div>
-                <!-- Assignment Submission Section -->
-				<div class="col-md" id="submission">
-					{% block submission %}
-                    {% endblock %}
-				</div>
-			</div>
+			{% block content %}
+			{% endblock %}
 		</main>
 	  </div>
 	</div>
 
-	<script src="./resource/jquery-3.3.1.slim.min.js.download"></script>
-	<script src="./resource/popper.min.js.download"></script>
-	<script src="./resource/bootstrap.min.js.download"></script>
+	<script src="{{url_for('static', filename='javascripts/jquery-3.3.1.slim.min.js')}}"></script>
+	<script src="{{url_for('static', filename='javascripts/bootstrap.bundle.min.js')}}"></script>
 </body>
 </html>
