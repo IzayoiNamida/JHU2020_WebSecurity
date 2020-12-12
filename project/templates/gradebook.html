@@ -2,7 +2,22 @@
 {% set active_page = "gradebook" %}
 
 {% block content %}
-<h1 class="title">
-  Welcome, {{ name }}!
-</h1>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Assignment</th>
+            <th scope="col">Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for grade in grades %}
+        <tr>
+            <th scope="row">{{grade.date}}</th>
+            <td>{{grade.aid}}</td>
+            <td>{{grade.score}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
