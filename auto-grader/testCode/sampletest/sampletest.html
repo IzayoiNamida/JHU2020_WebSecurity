@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Caculator most basic Ver</title>
+        <script>
+            function add() {
+                var a = parseInt(document.getElementById('a').value);
+                var b = parseInt(document.getElementById('b').value);
+                document.getElementById('c').value =  a+b ;
+            }
+        </script>
+    </head>
+    <body>
+        <input id="a" type="text"/> + <input id = "b" type="text" />
+        <button id = "bt" onclick="add()">=</button>
+        <output id = "c"></output>
+    </body>
+</html>
